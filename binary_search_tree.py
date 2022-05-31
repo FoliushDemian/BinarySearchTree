@@ -120,33 +120,34 @@ class BinarySearchTree:
                     node_to_delete.left.parent = node_to_delete.parent
                 else:
                     node_to_delete.parent.left = None
-            else:
+            elif node_to_delete.right:
                 node_to_delete.parent.right = node_to_delete.right
-                if node_to_delete.right:
-                    node_to_delete.right.parent = node_to_delete.parent
-                    current_node = node_to_delete.right
-                    while current_node.left:
-                        current_node = current_node.left
-                        node_to_delete.left.parent = current_node
-                    current_node.left = node_to_delete.left
-                elif node_to_delete.left:
-                    node_to_delete.parent.right = node_to_delete.left
-                    node_to_delete.left.parent = node_to_delete.parent
-                else:
-                    node_to_delete.parent.right = None
+                node_to_delete.right.parent = node_to_delete.parent
+                current_node = node_to_delete.right
+                while current_node.left:
+                    current_node = current_node.left
+                    node_to_delete.left.parent = current_node
+                current_node.left = node_to_delete.left
+            elif node_to_delete.left:
+                node_to_delete.parent.right = node_to_delete.left
+                node_to_delete.left.parent = node_to_delete.parent
+            else:
+                node_to_delete.parent.right = None
             node_to_delete = self.find(type_to_delete)
 
     def print_if_max_current_and_max_voltage_are(self, max_current: float, max_voltage: float):
-        if self.root.left:
-            self.root.left.print_if_max_current_and_max_voltage_are(max_current, max_voltage)
-        if self.root.right:
-            self.root.right.print_if_max_current_and_max_voltage_are(max_current, max_voltage)
-        if self.root.transistor.max_current == max_current and self.root.transistor.max_voltage == max_voltage:
-            print(self.root.transistor)
+        if self.root:
+            if self.root.left:
+                self.root.left.print_if_max_current_and_max_voltage_are(max_current, max_voltage)
+            if self.root.right:
+                self.root.right.print_if_max_current_and_max_voltage_are(max_current, max_voltage)
+            if self.root.transistor.max_current == max_current and self.root.transistor.max_voltage == max_voltage:
+                print(self.root.transistor)
 
     def print_binary_search_tree(self):
-        if self.root.left:
-            self.root.left.print_nodes()
-        if self.root.right:
-            self.root.right.print_nodes()
-        print(self.root.transistor)
+        if self.root:
+            if self.root.left:
+                self.root.left.print_nodes()
+            if self.root.right:
+                self.root.right.print_nodes()
+            print(self.root.transistor)
