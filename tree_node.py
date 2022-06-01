@@ -12,7 +12,7 @@ class TreeNode:
     def find_node(self, type_to_delete: str):  # шукаєм вказівник на ноду в якій є потрібний транзистор
         if self.transistor.type_of_transistor == type_to_delete:
             return self  # повертає силку на самого себе
-        left_result = None
+        left_result = None  # це будуть посилання
         right_result = None
         if self.left:  # то саме шо self.left is not None
             left_result = self.left.find_node(type_to_delete)
@@ -21,7 +21,7 @@ class TreeNode:
         return left_result if left_result else right_result
 
     def print_if_max_current_and_max_voltage_are(self, max_current, max_voltage):
-        if self.left:
+        if self.left: # це нода
             self.left.print_if_max_current_and_max_voltage_are(max_current, max_voltage)
         if self.right:
             self.right.print_if_max_current_and_max_voltage_are(max_current, max_voltage)
@@ -34,4 +34,3 @@ class TreeNode:
         if self.right:
             self.right.print_nodes()
         print(self.transistor)
-

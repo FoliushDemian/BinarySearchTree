@@ -1,4 +1,5 @@
-from binary_search_tree import BinarySearchTree, Transistor
+from binary_search_tree import BinarySearchTree
+from transistor import Transistor
 
 if __name__ == '__main__':
     Tree1 = BinarySearchTree()
